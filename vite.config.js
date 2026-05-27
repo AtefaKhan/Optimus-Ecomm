@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  base: '/Optimus-Ecomm/',
+
   plugins: [
     react({
       babel: {
@@ -11,8 +13,8 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+
   build: {
-    // Code splitting for better caching
     rollupOptions: {
       output: {
         manualChunks: {
@@ -22,9 +24,11 @@ export default defineConfig({
         },
       },
     },
-    // Optimize chunk sizes
+
     chunkSizeWarningLimit: 1000,
+
     minify: 'terser',
+
     terserOptions: {
       compress: {
         drop_console: true,
@@ -32,7 +36,7 @@ export default defineConfig({
       },
     },
   },
-  // Optimize CSS
+
   css: {
     preprocessorOptions: {
       scss: {
@@ -40,8 +44,8 @@ export default defineConfig({
       },
     },
   },
-  // Dev server config - keep it clean for development
-   server: {
+
+  server: {
     host: "0.0.0.0",
     port: 5173,
     middlewareMode: false,
