@@ -1,14 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  base: '/Optimus-Ecomm/',
+  base: "/Optimus-Ecomm/",
 
   plugins: [
     react({
       babel: {
-        plugins: ['@babel/plugin-syntax-import-meta'],
+        plugins: ["@babel/plugin-syntax-import-meta"],
       },
     }),
     tailwindcss(),
@@ -17,17 +17,22 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'animation-vendor': ['framer-motion'],
-          'icons-vendor': ['react-icons', 'lucide-react'],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("react")) return "react-vendor";
+            if (id.includes("framer-motion")) return "animation-vendor";
+            if (id.includes("lucide-react") || id.includes("react-icons"))
+              return "icons-vendor";
+
+            return "vendor";
+          }
         },
       },
     },
 
     chunkSizeWarningLimit: 1000,
 
-    minify: 'terser',
+    minify: "terser",
 
     terserOptions: {
       compress: {
@@ -50,4 +55,4 @@ export default defineConfig({
     port: 5173,
     middlewareMode: false,
   },
-})
+});
