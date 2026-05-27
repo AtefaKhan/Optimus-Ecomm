@@ -1,15 +1,14 @@
 import { lazy, Suspense, useEffect } from "react"
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom"
 import Home from "../pages/Home"
 
-// Lazy load other pages for better initial load
+// Lazy load other pages
 const About = lazy(() => import("../pages/About"))
 const Services = lazy(() => import("../pages/Services"))
 const Portfolio = lazy(() => import("../pages/Porfolio"))
 const Pricing = lazy(() => import("../pages/Pricing"))
 const Contact = lazy(() => import("../pages/Contact"))
 
-// Loading fallback component
 function LoadingFallback() {
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -23,7 +22,6 @@ function LoadingFallback() {
   )
 }
 
-// Scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation()
 
@@ -36,8 +34,9 @@ function ScrollToTop() {
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
+
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -48,7 +47,7 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
