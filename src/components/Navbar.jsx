@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon, ChevronRight } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { theme } from "../theme/theme.jsx";
@@ -8,6 +8,7 @@ import logoLight from "../assets/optimus_light_logo2.png";
 import logoDark from "../assets/optimus_dark_logo2.png";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -43,10 +44,10 @@ function Navbar() {
           : `${t.navBg} backdrop-blur-md border-b ${t.navBorder}`
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center">
         
-        {/* LOGO */}
-        <Link to="/" className="flex items-center">
+        {/* LEFT SECTION - LOGO */}
+        <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src={themeMode === "light" ? logoLight : logoDark}
             alt="Optimus Logo"
@@ -54,8 +55,8 @@ function Navbar() {
           />
         </Link>
 
-        {/* DESKTOP NAV */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* CENTER SECTION - NAVIGATION */}
+        <div className="hidden md:flex flex-1 justify-center items-center gap-8">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
@@ -89,11 +90,23 @@ function Navbar() {
               {link.name}
             </NavLink>
           ))}
+        </div>
 
-          {/* THEME TOGGLE */}
+        {/* RIGHT SECTION - CONSULTANCY BUTTON + THEME TOGGLE + MOBILE MENU */}
+        <div className="flex items-center gap-4 ml-auto">
+          
+          {/* GET FREE CONSULTANCY BUTTON - DESKTOP */}
+          <button
+            onClick={() => navigate('/contact#consultation-form')}
+            className="hidden lg:block px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
+          >
+            Get Free Consultation
+          </button>
+
+          {/* THEME TOGGLE - DESKTOP */}
           <button
             onClick={toggleTheme}
-            className={`${t.text} p-2 rounded-lg ${t.hover} transition`}
+            className={`hidden md:block ${t.text} p-2 rounded-lg ${t.hover} transition`}
           >
             {themeMode === "light" ? (
               <Moon size={20} />
@@ -101,15 +114,12 @@ function Navbar() {
               <Sun size={20} />
             )}
           </button>
-        </div>
-
-        {/* MOBILE CONTROLS */}
-        <div className="md:hidden flex items-center gap-2">
           
           {/* MOBILE THEME BUTTON */}
           <button
             onClick={toggleTheme}
             className={`
+              md:hidden
               ${t.text}
               p-2.5
               rounded-lg
@@ -131,6 +141,7 @@ function Navbar() {
           {/* MOBILE MENU BUTTON */}
           <button
             className={`
+              md:hidden
               ${t.text}
               p-2.5
               rounded-lg
@@ -212,7 +223,16 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Footer */}
-          <div className="px-4 py-4 border-t border-gray-200/10">
+          <div className="px-4 py-4 border-t border-gray-200/10 space-y-3">
+            <button
+              onClick={() => {
+                navigate('/contact#consultation-form');
+                setIsOpen(false);
+              }}
+              className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
+            >
+              Get Free Consultation
+            </button>
             <button
               onClick={toggleTheme}
               className={`
