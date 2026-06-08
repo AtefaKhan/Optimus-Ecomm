@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import MainLayout from "../layouts/MainLayout";
 import { useTheme } from "../context/ThemeContext";
 import { useEffect } from "react"
@@ -179,10 +179,31 @@ function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // const debounceTimer = useRef(null);
+
+  // Debounced form change handler - prevents excessive re-renders while typing
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+    
+  //   // Clear previous timer
+  //   if (debounceTimer.current) {
+  //     clearTimeout(debounceTimer.current);
+  //   }
+
+  //   // Set new debounced state update
+  //   debounceTimer.current = setTimeout(() => {
+  //     setFormData((prev) => ({ ...prev, [name]: value }));
+  //   }, 50); // 50ms debounce for instant feel but reduced re-renders
+  // };
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
 
   // Add inside the Contact function, before the return:
 const location = useLocation()
@@ -318,11 +339,12 @@ useEffect(() => {
                     //   setTimeout(() => { setSubmitted(true); setIsSubmitting(false); }, 1500);
                     // }}
                     onSubmit={handleSubmit}
+                     autoComplete="on"
                     className="space-y-6"
                   >
                     <div className="grid md:grid-cols-2 gap-6">
                       <ModernInput icon={User} label="Full Name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" required themeMode={themeMode} />
-                      <ModernInput icon={Mail} label="Email Address" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" required themeMode={themeMode} />
+                      <ModernInput icon={Mail} label="Email Address" type="email" name="email" value={formData.email}   autoComplete="email" onChange={handleChange} placeholder="you@example.com" required themeMode={themeMode} />
                     </div>
 
                     <ModernInput icon={Phone} label="Phone Number" type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 XXXXX XXXXX" required themeMode={themeMode} />

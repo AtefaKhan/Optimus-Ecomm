@@ -2,6 +2,7 @@ import { memo, useMemo } from "react";
 import MainLayout from "../layouts/MainLayout";
 import { useTheme } from "../context/ThemeContext";
 import { theme } from "../theme/theme.jsx";
+import { Quote, BadgeCheck } from "lucide-react";
 
 import { motion } from "framer-motion";
 
@@ -222,27 +223,117 @@ function Home() {
     { step: 6, title: "Sales Growth", desc: "Monitor and scale your sales" },
   ];
 
+  // const testimonials = [
+  //   {
+  //     name: "Rajesh Kumar",
+  //     company: "Fashion Brand",
+  //     message:
+  //       "Optimus helped us increase our Amazon sales by 300% in just 6 months. Their team is professional and results-driven.",
+  //     rating: 5,
+  //   },
+  //   {
+  //     name: "Priya Sharma",
+  //     company: "Electronics Seller",
+  //     message:
+  //       "The product listing optimization service transformed our Flipkart presence. Highly recommended!",
+  //     rating: 5,
+  //   },
+  //   {
+  //     name: "Amit Patel",
+  //     company: "Home Decor Business",
+  //     message:
+  //       "Best investment for our e-commerce business. The ROI has been exceptional.",
+  //     rating: 5,
+  //   },
+  // ];
+
+  const testimonials2 = [
+    {
+      name: "Arif Khan",
+      brand: "Aqrin",
+      category: "Bike Accessories",
+      location: "Delhi",
+
+      afterImage: "public/testimonials/anand-after.jpg",
+      beforeImage: "public/testimonials/anand-before.jpg",
+
+      // result: "+240% Sales Growth",
+
+      message:
+        "Optimus helped us improve our catalog and advertising performance significantly.",
+    },
+  ];
+
   const testimonials = [
     {
-      name: "Rajesh Kumar",
-      company: "Fashion Brand",
-      message:
-        "Optimus helped us increase our Amazon sales by 300% in just 6 months. Their team is professional and results-driven.",
+      name: "Arif Khan",
+      brand: "Aqrin",
+      category: "Bike Accessories",
+      location: "Delhi",
+
+      afterImage: "public/testimonials/abrumax-after.jpg",
+      beforeImage: "public/testimonials/abrumax-before.jpg",
+
       rating: 5,
+      message:
+        "Optimus helped us optimize our marketplace listings and improve visibility. Our Bike Accessories business saw significant growth in customer reach and conversions.",
+      result: "Marketplace Growth",
     },
     {
-      name: "Priya Sharma",
-      company: "Electronics Seller",
-      message:
-        "The product listing optimization service transformed our Flipkart presence. Highly recommended!",
+      name: "Devender",
+      brand: "YGDeal",
+      category: "Men's Cargo",
+      location: "Sonipat",
+
+      afterImage: "public/testimonials/ygdeal-after.jpg",
+      beforeImage: "public/testimonials/ygdeal-before.jpg",
+
       rating: 5,
+      message:
+        "The team's expertise in catalog management and advertising helped us scale our men's fashion business across multiple marketplaces.",
+      result: "Sales Increased",
     },
     {
-      name: "Amit Patel",
-      company: "Home Decor Business",
-      message:
-        "Best investment for our e-commerce business. The ROI has been exceptional.",
+      name: "Sonu Singhal",
+      brand: "MobieGenie",
+      category: "Mobile Cases & Covers",
+      location: "Jaipur",
+
+      afterImage: "public/testimonials/anand-after.jpg",
+      beforeImage: "public/testimonials/anand-before.jpg",
+
       rating: 5,
+      message:
+        "Their product listing optimization and growth strategy delivered excellent results. We now have better visibility and stronger sales performance.",
+      result: "Higher Visibility",
+    },
+    {
+      name: "Faiyyaz Khan",
+      brand: "Ekove",
+      category: "Kids Clothing",
+      location: "Kolkata",
+
+      afterImage: "public/testimonials/nvkfashion-after.jpg",
+      beforeImage: "public/testimonials/nvkfashion-before.jpg",
+
+      rating: 5,
+      message:
+        "Optimus helped us build a stronger brand presence and streamline our marketplace operations. The growth has been remarkable.",
+      result: "Brand Expansion",
+    },
+    {
+      name: "Abhishek",
+      brand: "Alpha Wing",
+      category: "Bike Shoe Covers",
+      location: "Surat",
+
+      afterImage: "public/testimonials/alphawing-after.jpg",
+      beforeImage: "public/testimonials/alphawing-before.jpg",
+
+      rating: 5,
+      message:
+        "From catalog setup to performance marketing, the support was exceptional. We achieved better reach and improved customer engagement.",
+      result: "Business Growth",
     },
   ];
 
@@ -614,33 +705,87 @@ function Home() {
                   Real success stories from sellers and brands we've helped
                 </p>
               </div>
-
-              <div className="mt-16 grid gap-8 md:grid-cols-3">
+              <div className="mt-16 flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
                 {testimonials.map((item, index) => (
                   <motion.div
                     key={index}
-                    whileHover={{ y: -8, scale: 1.02 }}
+                    whileHover={{ y: -10 }}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
-                    className={`rounded-2xl border p-8 backdrop-blur-xl transition-all duration-300 ${t.card} ${
-                      themeMode === "light" ? t.cardHover : ""
-                    }`}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className={`w-[320px] flex-none snap-center overflow-hidden rounded-3xl border ${t.card} shadow-lg`}
                   >
-                    <div className="mb-4 flex gap-1">
-                      {[...Array(item.rating)].map((_, i) => (
-                        <span
-                          key={i}
-                          className="text-2xl transition-transform duration-300 hover:scale-110"
-                        >
-                          ⭐
-                        </span>
-                      ))}
+                    {/* Image */}
+                    {/* <div className={`overflow-hidden rounded-3xl border ${t.card}`}> */}
+                    {/* Before / After */}
+                    <div className="grid grid-cols-2 overflow-hidden rounded-t-xl">
+                      {/* BEFORE panel */}
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={item.beforeImage}
+                          alt="Before"
+                          className="h-40 w-full object-cover object-top grayscale brightness-75"
+                        />
+                        {/* <div className="absolute inset-0 bg-black/20" /> */}
+                        <div className="absolute left-2 top-2 rounded bg-black/80 px-2 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                          Before
+                        </div>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="absolute left-1/2 top-0 z-10 flex h-40 -translate-x-1/2 flex-col items-center justify-center">
+                        <div className="h-full w-[2px] bg-white" />
+                        <div className="absolute flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md">
+                          <svg
+                            className="h-3.5 w-3.5 text-gray-600"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                          >
+                            <polyline points="15 18 21 12 15 6" />
+                            <polyline points="9 6 3 12 9 18" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      {/* AFTER panel */}
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={item.afterImage}
+                          alt="After"
+                          className="h-40 w-full object-cover object-top"
+                        />
+                        <div className="absolute right-2 top-2 rounded bg-green-500 px-2 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                          After
+                        </div>
+                      </div>
                     </div>
-                    <p className={`italic ${t.muted}`}>"{item.message}"</p>
-                    <div className="mt-6 border-t border-gray-300/50 pt-6">
-                      <p className={`font-semibold ${t.text}`}>{item.name}</p>
-                      <p className={`text-sm ${t.muted}`}>{item.company}</p>
+
+                    {/* Result Badge */}
+                    <div className="flex justify-center">
+                      <span className="mt-4 rounded-full bg-green-500/10 px-4 py-2 text-sm font-semibold text-green-500">
+                        {item.result}
+                      </span>
+                    </div>
+
+                    {/* Testimonial */}
+                    <div className="p-6">
+                      <p className={`italic ${t.muted}`}>"{item.message}"</p>
+
+                      <div className="mt-6 border-t border-gray-300/50 pt-4">
+                        <h4 className={`font-bold ${t.text}`}>{item.name}</h4>
+
+                        <p className={`text-sm ${t.muted}`}>
+                          {item.brand} • {item.location}
+                        </p>
+
+                        <span className="mt-2 inline-block rounded-full bg-blue-500/10 px-3 py-1 text-xs text-blue-500">
+                          {item.category}
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 ))}

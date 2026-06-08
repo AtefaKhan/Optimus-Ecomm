@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon, ChevronRight } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
@@ -11,16 +11,22 @@ function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const inThrottle = useRef(false);
 
   const { themeMode, toggleTheme } = useTheme();
   const t = theme[themeMode];
 
   useEffect(() => {
+    // Throttled scroll handler - limits updates to ~100ms intervals
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!inThrottle.current) {
+        setScrolled(window.scrollY > 20);
+        inThrottle.current = true;
+        setTimeout(() => (inThrottle.current = false), 100);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);

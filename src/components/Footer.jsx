@@ -19,9 +19,9 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: FaFacebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61577942864518' },
-    { icon: FaTwitter, label: 'Twitter', href: '#' },
+    // { icon: FaTwitter, label: 'Twitter', href: '#' },
     { icon: FaInstagram, label: 'Instagram', href: 'https://www.instagram.com/optimus_ecommerce/' },
-    { icon: FaLinkedin, label: 'LinkedIn', href: '#' },
+    // { icon: FaLinkedin, label: 'LinkedIn', href: '#' },
   ]
 
   const contactInfo = [
