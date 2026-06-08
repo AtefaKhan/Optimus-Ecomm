@@ -247,22 +247,22 @@ function Home() {
   //   },
   // ];
 
-  const testimonials2 = [
-    {
-      name: "Arif Khan",
-      brand: "Aqrin",
-      category: "Bike Accessories",
-      location: "Delhi",
+  // const testimonials2 = [
+  //   {
+  //     name: "Arif Khan",
+  //     brand: "Aqrin",
+  //     category: "Bike Accessories",
+  //     location: "Delhi",
 
-      afterImage: "public/testimonials/anand-after.jpg",
-      beforeImage: "public/testimonials/anand-before.jpg",
+  //     afterImage: "/testimonials/anand-after.jpg",
+  //     beforeImage: "/testimonials/anand-before.jpg",
 
-      // result: "+240% Sales Growth",
+  //     // result: "+240% Sales Growth",
 
-      message:
-        "Optimus helped us improve our catalog and advertising performance significantly.",
-    },
-  ];
+  //     message:
+  //       "Optimus helped us improve our catalog and advertising performance significantly.",
+  //   },
+  // ];
 
   const testimonials = [
     {
@@ -271,8 +271,8 @@ function Home() {
       category: "Bike Accessories",
       location: "Delhi",
 
-      afterImage: "public/testimonials/abrumax-after.jpg",
-      beforeImage: "public/testimonials/abrumax-before.jpg",
+      afterImage: "/testimonials/abrumax-after.jpg",
+      beforeImage: "/testimonials/abrumax-before.jpg",
 
       rating: 5,
       message:
@@ -285,8 +285,8 @@ function Home() {
       category: "Men's Cargo",
       location: "Sonipat",
 
-      afterImage: "public/testimonials/ygdeal-after.jpg",
-      beforeImage: "public/testimonials/ygdeal-before.jpg",
+      afterImage: "/testimonials/ygdeal-after.jpg",
+      beforeImage: "/testimonials/ygdeal-before.jpg",
 
       rating: 5,
       message:
@@ -299,8 +299,8 @@ function Home() {
       category: "Mobile Cases & Covers",
       location: "Jaipur",
 
-      afterImage: "public/testimonials/anand-after.jpg",
-      beforeImage: "public/testimonials/anand-before.jpg",
+      afterImage: "/testimonials/anand-after.jpg",
+      beforeImage: "/testimonials/anand-before.jpg",
 
       rating: 5,
       message:
@@ -313,8 +313,8 @@ function Home() {
       category: "Kids Clothing",
       location: "Kolkata",
 
-      afterImage: "public/testimonials/nvkfashion-after.jpg",
-      beforeImage: "public/testimonials/nvkfashion-before.jpg",
+      afterImage: "/testimonials/nvkfashion-after.jpg",
+      beforeImage: "/testimonials/nvkfashion-before.jpg",
 
       rating: 5,
       message:
@@ -327,8 +327,8 @@ function Home() {
       category: "Bike Shoe Covers",
       location: "Surat",
 
-      afterImage: "public/testimonials/alphawing-after.jpg",
-      beforeImage: "public/testimonials/alphawing-before.jpg",
+      afterImage: "/testimonials/alphawing-after.jpg",
+      beforeImage: "/testimonials/alphawing-before.jpg",
 
       rating: 5,
       message:
