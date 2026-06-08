@@ -263,6 +263,7 @@ function Home() {
   //       "Optimus helped us improve our catalog and advertising performance significantly.",
   //   },
   // ];
+  const BASE_URL = import.meta.env.BASE_URL;
 
   const testimonials = [
     {
@@ -271,8 +272,8 @@ function Home() {
       category: "Bike Accessories",
       location: "Delhi",
 
-      afterImage: "/testimonials/abrumax-after.jpg",
-      beforeImage: "/testimonials/abrumax-before.jpg",
+    afterImage: `${BASE_URL}testimonials/abrumax-after.jpg`,
+    beforeImage: `${BASE_URL}testimonials/abrumax-before.jpg`,
 
       rating: 5,
       message:
@@ -285,8 +286,8 @@ function Home() {
       category: "Men's Cargo",
       location: "Sonipat",
 
-      afterImage: "/testimonials/ygdeal-after.jpg",
-      beforeImage: "/testimonials/ygdeal-before.jpg",
+      afterImage: `${BASE_URL}testimonials/ygdeal-after.jpg`,
+      beforeImage: `${BASE_URL}testimonials/ygdeal-before.jpg`,
 
       rating: 5,
       message:
@@ -299,9 +300,8 @@ function Home() {
       category: "Mobile Cases & Covers",
       location: "Jaipur",
 
-      afterImage: "/testimonials/anand-after.jpg",
-      beforeImage: "/testimonials/anand-before.jpg",
-
+     afterImage: `${BASE_URL}testimonials/anand-after.jpg`,
+    beforeImage: `${BASE_URL}testimonials/anand-before.jpg`,
       rating: 5,
       message:
         "Their product listing optimization and growth strategy delivered excellent results. We now have better visibility and stronger sales performance.",
@@ -313,8 +313,8 @@ function Home() {
       category: "Kids Clothing",
       location: "Kolkata",
 
-      afterImage: "/testimonials/nvkfashion-after.jpg",
-      beforeImage: "/testimonials/nvkfashion-before.jpg",
+      afterImage: `${BASE_URL}testimonials/nvkfashion-after.jpg`,
+      beforeImage: `${BASE_URL}testimonials/nvkfashion-before.jpg`,
 
       rating: 5,
       message:
@@ -327,8 +327,8 @@ function Home() {
       category: "Bike Shoe Covers",
       location: "Surat",
 
-      afterImage: "/testimonials/alphawing-after.jpg",
-      beforeImage: "/testimonials/alphawing-before.jpg",
+      afterImage: `${BASE_URL}testimonials/alphawing-after.jpg`,
+      beforeImage: `${BASE_URL}testimonials/alphawing-before.jpg`,
 
       rating: 5,
       message:
