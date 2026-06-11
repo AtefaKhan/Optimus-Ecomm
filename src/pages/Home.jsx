@@ -734,7 +734,7 @@ function Home() {
                       </div>
 
                       {/* Divider */}
-                      <div className="absolute left-1/2 top-0 z-10 flex h-40 -translate-x-1/2 flex-col items-center justify-center">
+                      {/* <div className="absolute left-1/2 top-0 z-10 flex h-40 -translate-x-1/2 flex-col items-center justify-center">
                         <div className="h-full w-[2px] bg-white" />
                         <div className="absolute flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md">
                           <svg
@@ -749,7 +749,7 @@ function Home() {
                             <polyline points="9 6 3 12 9 18" />
                           </svg>
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* AFTER panel */}
                       <div className="relative overflow-hidden">

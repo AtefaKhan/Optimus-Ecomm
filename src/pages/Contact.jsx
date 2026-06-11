@@ -7,7 +7,7 @@ import { theme } from "../theme/theme.jsx";
 import { motion } from "framer-motion";
 import {
   Phone, Mail, ArrowRight, CheckCircle,
-  Briefcase, User, Package,
+  Briefcase, User, Package,ChevronDown
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import Reveal from "../components/Reveal";
@@ -73,45 +73,160 @@ const ModernTextarea = ({
 );
 
 // ✅ MOVED OUTSIDE — consistent design with ModernInput wrapper
+// const ModernSelect = ({
+//   label, name, value, onChange,
+//   options, placeholder, required = false, themeMode,
+// }) => (
+//   <div className="space-y-3">
+//     <label className={`text-sm font-semibold tracking-wide ${themeMode === "dark" ? "text-gray-200" : "text-gray-700"}`}>
+//       {label}
+//     </label>
+//     <div className="relative group">
+//       <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/30 to-orange-500/0 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
+//       <Briefcase size={19} className={`absolute left-4 top-1/2 z-10 -translate-y-1/2 transition-all duration-300 group-focus-within:text-blue-500 ${themeMode === "dark" ? "text-gray-400" : "text-gray-500"}`} />
+//       <select
+//         name={name}
+//         required={required}
+//         value={value}
+//         onChange={onChange}
+//         className={`relative w-full appearance-none rounded-2xl border py-4 pl-12 pr-12 text-[15px] font-medium outline-none transition-all duration-300 focus:scale-[1.01] hover:scale-[1.01] focus:ring-4 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] ${
+//           themeMode === "dark"
+//             ? "border-white/10 bg-white/[0.04] text-white focus:border-blue-500 focus:ring-blue-500/20 hover:border-white/20"
+//             : "border-gray-200 bg-white/80 text-gray-900 focus:border-blue-500 focus:ring-blue-500/15 hover:border-gray-300"
+//         }`}
+//       >
+//         <option value="" className={themeMode === "dark" ? "bg-slate-900 text-gray-400" : "bg-white text-gray-500"}>
+//           {placeholder}
+//         </option>
+//         {options.map((item) => (
+//           <option key={item} value={item} className={themeMode === "dark" ? "bg-slate-900 text-white" : "bg-white text-black"}>
+//             {item}
+//           </option>
+//         ))}
+//       </select>
+//       <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
+//         <svg className="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+//           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+//         </svg>
+//       </div>
+//     </div>
+//   </div>
+// );
+
+
 const ModernSelect = ({
-  label, name, value, onChange,
-  options, placeholder, required = false, themeMode,
-}) => (
-  <div className="space-y-3">
-    <label className={`text-sm font-semibold tracking-wide ${themeMode === "dark" ? "text-gray-200" : "text-gray-700"}`}>
-      {label}
-    </label>
-    <div className="relative group">
-      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/30 to-orange-500/0 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
-      <Briefcase size={19} className={`absolute left-4 top-1/2 z-10 -translate-y-1/2 transition-all duration-300 group-focus-within:text-blue-500 ${themeMode === "dark" ? "text-gray-400" : "text-gray-500"}`} />
-      <select
-        name={name}
-        required={required}
-        value={value}
-        onChange={onChange}
-        className={`relative w-full appearance-none rounded-2xl border py-4 pl-12 pr-12 text-[15px] font-medium outline-none transition-all duration-300 focus:scale-[1.01] hover:scale-[1.01] focus:ring-4 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] ${
+  label,
+  value,
+  options,
+  placeholder,
+  required,
+  themeMode,
+  onChange,
+  name,
+}) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (!ref.current?.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClick);
+    return () =>
+      document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  return (
+    <div className="space-y-3" ref={ref}>
+      <label
+        className={`text-sm font-semibold tracking-wide ${
           themeMode === "dark"
-            ? "border-white/10 bg-white/[0.04] text-white focus:border-blue-500 focus:ring-blue-500/20 hover:border-white/20"
-            : "border-gray-200 bg-white/80 text-gray-900 focus:border-blue-500 focus:ring-blue-500/15 hover:border-gray-300"
+            ? "text-gray-200"
+            : "text-gray-700"
         }`}
       >
-        <option value="" className={themeMode === "dark" ? "bg-slate-900 text-gray-400" : "bg-white text-gray-500"}>
-          {placeholder}
-        </option>
-        {options.map((item) => (
-          <option key={item} value={item} className={themeMode === "dark" ? "bg-slate-900 text-white" : "bg-white text-black"}>
-            {item}
-          </option>
-        ))}
-      </select>
-      <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
-        <svg className="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        {label}
+      </label>
+
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className={`w-full rounded-2xl border py-4 pl-12 pr-12 text-left backdrop-blur-xl transition-all duration-300 ${
+            themeMode === "dark"
+              ? "border-white/10 bg-white/[0.04] text-white hover:border-blue-500/50"
+              : "border-gray-200 bg-white/80 text-gray-900 hover:border-blue-500/50"
+          }`}
+        >
+          <Briefcase
+            size={18}
+            className={`absolute left-4 top-1/2 -translate-y-1/2 ${
+              themeMode === "dark"
+                ? "text-gray-400"
+                : "text-gray-500"
+            }`}
+          />
+
+          {value || placeholder}
+
+          <ChevronDown
+            size={18}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 transition-transform ${
+              open ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+
+        {open && (
+          <div
+            className={`absolute z-50 mt-2 w-full overflow-hidden rounded-2xl border backdrop-blur-xl shadow-2xl ${
+              themeMode === "dark"
+                ? "border-white/10 bg-slate-900/95"
+                : "border-gray-200 bg-white/95"
+            }`}
+          >
+            {options.map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => {
+                  onChange({
+                    target: {
+                      name,
+                      value: item,
+                    },
+                  });
+                  setOpen(false);
+                }}
+                className={`w-full px-5 py-4 text-left transition-colors ${
+                  themeMode === "dark"
+                    ? "hover:bg-blue-500/20 text-white"
+                    : "hover:bg-blue-50 text-gray-900"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {required && (
+          <input
+            tabIndex={-1}
+            autoComplete="off"
+            value={value}
+            required
+            onChange={() => {}}
+            className="absolute opacity-0 pointer-events-none"
+          />
+        )}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // ✅ MOVED OUTSIDE — consistent design with ModernInput wrapper
 const ModernMarketplaces = ({ label, name, value, onChange, themeMode, setFormData }) => (
@@ -228,7 +343,7 @@ useEffect(() => {
   setIsSubmitting(true);
 
   try {
-    const response = await fetch("https://formspree.io/f/mnjrbadd", {
+    const response = await fetch("https://formspree.io/f/mykangon", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -353,7 +468,7 @@ useEffect(() => {
 
                     <ModernMarketplaces label="Current Marketplaces" name="marketplaces" value={formData.marketplaces} onChange={handleChange} themeMode={themeMode} setFormData={setFormData} />
 
-                    <ModernInput icon={Package} label="Number of Products" type="number" name="products" value={formData.products} onChange={handleChange} placeholder="10" themeMode={themeMode} />
+                    <ModernInput icon={Package} label="Number of Products" type="text" name="products" value={formData.products} onChange={handleChange} placeholder="10" themeMode={themeMode} />
 
                     <ModernTextarea label="Tell us about your business" name="message" value={formData.message} onChange={handleChange} placeholder="Describe your products, goals, marketplaces, or any challenges you're facing..." themeMode={themeMode} />
 

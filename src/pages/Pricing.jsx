@@ -464,8 +464,8 @@ function Pricing() {
                                 ₹{plans[1].monthlyPrice}
                               </span>
                             )}
-                            {feature === "Product Listings" && "Unlimited"}
-                            {feature === "Marketplaces" && "2"}
+                            {feature === "Product Listings" && "299"}
+                            {feature === "Marketplaces" && "1"}
                             {feature === "Account Manager" && "Shared"}
                             {feature === "Support" && "Email + Phone"}
                             {feature === "Strategy Calls" && "Weekly"}
